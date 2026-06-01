@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อ.ดร.ต้นรัก - Digital Business Card Share</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0f1d;
+            --card-bg: #141c3a;
+            --accent-blue: #00d2ff;
+            --accent-neon: #00f5d4;
+            --text-main: #ffffff;
+            --text-sub: #8a99ad;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1a264d 0%, var(--bg-color) 100%);
+            font-family: 'Sarabun', 'Chakra Petch', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-main);
+            box-sizing: border-box;
+        }
+
+        .profile-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            object-fit: cover;
+        }
+
+        h2 { 
+            font-family: 'Chakra Petch', sans-serif;
+            color: var(--text-main); 
+            margin: 15px 0 5px 0; 
+            font-size: 22px; 
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--accent-neon);
+            font-size: 14px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-text { 
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 20px; 
+            font-weight: bold; 
+            color: var(--accent-blue); 
+            margin-bottom: 5px; 
+        }
+
+        .sub-text { 
+            color: var(--text-sub); 
+            font-size: 14px; 
+            margin-bottom: 20px; 
+            display: block;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 250px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            box-sizing: border-box;
+            background-color: #0d1326;
+            color: #00ff66;
+            resize: none;
+            line-height: 1.5;
+        }
+        textarea:focus { 
+            outline: none; 
+            border-color: var(--accent-blue); 
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-share {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #0072ff 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            letter-spacing: 1px;
+        }
+        .btn-share:hover {
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+        }
+        .btn-share:active { 
+            transform: translateY(2px); 
+            box-shadow: 0 2px 5px rgba(0, 114, 255, 0.4); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <img src="อ.ดร.ต้นรัก.jpg" class="profile-img" alt="อ.ดร.ต้นรัก ธวัชชัย สุขสีดา">
+        <h2>อ.ดร.ต้นรัก ธวัชชัย สุขสีดา</h2>
+        <p class="subtitle">AI & Digital Literacy Expert</p>
+    </div>
+
+    <div class="card">
+        <div class="header-text">🤖 LINE LIFF Digital Card</div>
+        <span class="sub-text">ตรวจสอบโค้ด JSON ด้านล่างแล้วกดแชร์ไปยังแชท LINE</span>
+
+        <textarea id="jsonInput" placeholder="วางโค้ด JSON ตรงนี้...">{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://www.ajtonrak.com/wp-content/uploads/2024/02/cropped-Logo-Aj-Tonrak.jpg",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "อ.ดร.ต้นรัก ธวัชชัย สุขสีดา",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "text",
+        "text": "ผู้เชี่ยวชาญด้าน Digital & AI Literacy / E-commerce",
+        "size": "sm",
+        "color": "#666666",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "🌐 เว็บไซต์: www.ajtonrak.com",
+            "size": "sm"
+          },
+          {
+            "type": "text",
+            "text": "🎓 ที่ปรึกษาอนุกรรมาธิการเทคโนโลยีและนวัตกรรม",
+            "size": "sm",
+            "wrap": true
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "ดูข้อมูลวิทยากร / ติดต่อ",
+          "uri": "https://www.ajtonrak.com/"
+        }
+      }
+    ],
+    "flex": 0
+  }
+}</textarea>
+
+        <button class="btn-share" onclick="sendFlex()">🚀 ส่งต่อดิจิทัลการ์ด</button>
+    </div>
+
+    <script>
+        // อย่าลืมเอา LIFF ID ที่ได้จาก LINE Developers มาใส่ตรงนี้ครับอาจารย์
+        const MY_LIFF_ID = 'YOUR_LIFF_ID_HERE'; 
+
+        // เริ่มต้นระบบ LIFF 
+        async function initLiff() {
+            try {
+                await liff.init({ liffId: MY_LIFF_ID });
+                if (!liff.isLoggedIn()) {
+                    liff.login(); 
+                }
+            } catch (error) {
+                console.error('LIFF Init มีปัญหา:', error);
+            }
+        }
+
+        // ฟังก์ชันสั่งแชร์ออกไปหาเพื่อน/กลุ่ม
+        async function sendFlex() {
+            const rawJson = document.getElementById('jsonInput').value.trim();
+            
+            if (!rawJson) {
+                alert('โปรดวางโค้ด JSON ก่อนกดยิงแชร์ครับอาจารย์!');
+                return;
+            }
+
+            try {
+                // แปลงข้อความ Text ใน Textarea ให้กลายเป็น Object JSON
+                const parsedFlex = JSON.parse(rawJson);
+
+                // ตรวจสอบว่าสิทธิ์เปิด Share Target Picker สำเร็จไหม
+                if (liff.isApiAvailable('shareTargetPicker')) {
+                    const result = await liff.shareTargetPicker([
+                        {
+                            "type": "flex",
+                            "altText": "คุณได้รับนามบัตรดิจิทัลจาก อ.ดร.ต้นรัก",
+                            "contents": parsedFlex
+                        }
+                    ]);
+                    
+                    if (result) {
+                        alert('แชร์นามบัตรดิจิทัลเรียบร้อยแล้วครับ!');
+                    } else {
+                        console.log('ผู้ใช้ยกเลิกการส่ง');
+                    }
+                } else {
+                    alert('กรุณาเปิดสิทธิ์ Share Target Picker ใน LINE Developers ก่อนใช้งานครับ');
+                }
+            } catch (error) {
+                alert('โค้ด JSON ไม่ถูกต้อง! กรุณาตรวจสอบโครงสร้าง ปีกกา หรือเครื่องหมายจุลภาค (,)');
+                console.error(error);
+            }
+        }
+
+        // รันคำสั่งเมื่อเปิดหน้าเว็บ
+        initLiff();
+    </script>
+</body>
+</html>
